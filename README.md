@@ -1,4 +1,4 @@
-# Project Name
+# City Explorer
 
 **Author**: Daniel Yoon
 **Version**: 1.0.0
