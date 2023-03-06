@@ -24,6 +24,7 @@ class CitySearch extends React.Component {
                 format: 'json'
             }
         });
+        this.props.setLocData(cityData.data[0]);
         console.log(cityData.data[0]);
     };
 
