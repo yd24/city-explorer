@@ -3,29 +3,24 @@ import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 
 class CitySearch extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            searchValue: ''
-        };
-    }
     handleInput = (e) => {
-        this.setState({
-            searchValue: e.target.value
-        });
+        this.props.setSearchValue(e.target.value);
     };
 
     handleSubmit = async (e) => {
         e.preventDefault();
-        let cityData = await axios.get('https://us1.locationiq.com/v1/search', {
-            params: {
-                key: process.env.REACT_APP_LOCATIONIQ_API_KEY,
-                q: this.state.searchValue,
-                format: 'json'
-            }
-        });
-        this.props.setLocData(cityData.data[0]);
-        console.log(cityData.data[0]);
+        try {
+            let cityData = await axios.get('https://us1.locationiq.com/v1/search', {
+                params: {
+                    key: process.env.REACT_APP_LOCATIONIQ_API_KEY,
+                    q: this.props.searchValue,
+                    format: 'json'
+                }
+            });
+            this.props.setLocData(cityData.data[0]);
+        } catch(error) {
+            this.props.setError(error);
+        }
     };
 
     render() {

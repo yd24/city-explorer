@@ -20,3 +20,34 @@
 
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
+
+
+## Feature #1 Locations
+
+* Estimate of time needed to complete: 30 min
+
+* Start time: 2:15pm
+
+* Finish time: 2:35pm
+
+* Actual time needed to complete: 20 min
+
+## Feature #2 Map
+
+* Estimate of time needed to complete: 30 min
+
+* Start time: 2:35pm, 8:00pm
+
+* Finish time: 9:00pm
+
+* Actual time needed to complete: 1 hour
+
+## Feature #3 Error Message
+
+* Estimate of time needed to complete: 15 min
+
+* Start time: 9:00pm
+
+* Finish time: 10:00pm
+
+* Actual time needed to complete: 1 hour

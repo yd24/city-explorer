@@ -1,29 +1,37 @@
 import React from 'react';
 import CitySearch from './CitySearch';
+import SearchResult from './SearchResult';
+import ErrorMssg from './ErrorMssg';
 
 class Main extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            locData: {}
+            searchValue: '',
+            locData: {},
+            error: false,
+            errorMssg:''
         };
     }
 
     setLocData = (data) => {
         this.setState({
-            locData: data
+            locData: data,
+            error: false
         });
     };
 
-    displayLonLat = () => {
-        if (Object.keys(this.state.locData).length > 0) {
-            return (
-                <>
-                    <p>Longitude: {this.state.locData.lon}</p>
-                    <p>Latitude: {this.state.locData.lat}</p>
-                </>
-            );
-        }
+    setSearchValue = (query) => {
+        this.setState({
+            searchValue: query
+        });
+    };
+
+    setError = (error) => {
+        this.setState({
+            error: true,
+            errorMssg: error.message
+        });
     };
 
     render() {
@@ -31,9 +39,17 @@ class Main extends React.Component {
             <>
                 <CitySearch 
                     setLocData={this.setLocData}
+                    setSearchValue={this.setSearchValue}
+                    searchValue={this.state.searchValue}
+                    setError={this.setError}
                 />
-                <h2>{this.state.locData.display_name}</h2>
-                {this.displayLonLat()}
+                <SearchResult 
+                    locData={this.state.locData}
+                />
+                <ErrorMssg 
+                    error={this.state.error}
+                    errorMssg={this.state.errorMssg}
+                />
             </>
         );
     }
