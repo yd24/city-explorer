@@ -1,6 +1,7 @@
 # City Explorer
 
 **Author**: Daniel Yoon
+
 **Version**: 1.4.0
 
 ## Overview
@@ -18,10 +19,10 @@ This application uses React to render the webpage, React-Bootstrap for styling U
 
 ## Change Log
 
-03-06-2023 2:35pm - Application now displays latitude and longitude for a searched location.
-03-06-2023 9:00pm - Application now displays a static map for the searched location.
-03-06-2023 10:00pm - Application now displays errors for invalid requests.
-03-07-2023 11:00pm - Updated visual layout for application.
+* 03-06-2023 2:35pm - Application now displays latitude and longitude for a searched location.
+* 03-06-2023 9:00pm - Application now displays a static map for the searched location.
+* 03-06-2023 10:00pm - Application now displays errors for invalid requests.
+* 03-07-2023 11:00pm - Updated visual layout for application.
 
 ## Credit and Collaborations
 Developed by: Daniel Yoon
@@ -29,6 +30,7 @@ Developed by: Daniel Yoon
 Background image from [Deva Darshan on Unsplash](https://unsplash.com/photos/v0zwX1aPlHI)
 
 **WRRC Diagram made w/ Trey Young**
+
 https://docs.google.com/drawings/d/1Tkxp3Tv0wyyU8MDvq5erv-_a8AJENkYlkxesk4n3XBg/edit?usp=sharing
 
 
