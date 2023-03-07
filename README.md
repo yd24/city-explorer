@@ -1,25 +1,32 @@
 # City Explorer
 
 **Author**: Daniel Yoon
-**Version**: 1.0.0
+**Version**: 1.4.0
 
 ## Overview
-<!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for this class. (i.e. What's your problem domain?) -->
+This application allows users to explore areas they haven't been to before. Input a location and see a map and coordinates for the area!
 
 
 ## Getting Started
-<!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
+* First, clone this repository from Github and ensure that node and npm are installed.
+* Afterwards, run npm install to install the dependencies on package.json.
+* Rename the .env.sample file to .env and set REACT_APP_LOCATIONIQ_API_KEY= to your API Key from LocationIQ.
+* Run npm start to run the app!
 
 ## Architecture
-<!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
+This application uses React to render the webpage, React-Bootstrap for styling UI elements, and LocationIQ API for obtaining geodata. 
 
 ## Change Log
-<!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
 
-01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
+03-06-2023 2:35pm - Application now displays latitude and longitude for a searched location.
+03-06-2023 9:00pm - Application now displays a static map for the searched location.
+03-06-2023 10:00pm - Application now displays errors for invalid requests.
+03-07-2023 11:00pm - Updated visual layout for application.
 
 ## Credit and Collaborations
-<!-- Give credit (and a link) to other people or resources that helped you build this application. -->
+Developed by: Daniel Yoon
+
+Background image from [Deva Darshan on Unsplash](https://unsplash.com/photos/v0zwX1aPlHI)
 
 **WRRC Diagram made w/ Trey Young**
 https://docs.google.com/drawings/d/1Tkxp3Tv0wyyU8MDvq5erv-_a8AJENkYlkxesk4n3XBg/edit?usp=sharing
