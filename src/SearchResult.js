@@ -10,33 +10,28 @@ class SearchResult extends React.Component {
     };
 
     render() {
-        let results;
-        if (Object.keys(this.props.locData).length > 0 && !this.props.error) {
-            results = (
-                <>
-                    <Card className="text-center card-width">
-                        <Card.Header><h4>{this.props.locData.display_name}</h4></Card.Header>
-                        <Card.Img
-                            variant="top"
-                            className="map-img"
-                            src={this.buildStaticMapURL()}
-                            alt={this.props.locData.display_name}
-                        />
-                        <Card.Body>
-                            <Card.Text>
-                                <strong>Longitude:</strong> {this.props.locData.lon}
-                                <br />
-                                <strong>Latitude:</strong> {this.props.locData.lat}
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-
-                </>
-            );
-        } else {
-            results = null;
-        }
-        return results;
+        return (
+            Object.keys(this.props.locData).length > 0 && !this.props.error 
+            &&
+            <>
+            <Card className="text-center card-width">
+                <Card.Header><h4>{this.props.locData.display_name}</h4></Card.Header>
+                <Card.Img
+                    variant="top"
+                    className="map-img"
+                    src={this.buildStaticMapURL()}
+                    alt={this.props.locData.display_name}
+                />
+                <Card.Body>
+                    <Card.Text>
+                        <strong>Longitude:</strong> {this.props.locData.lon}
+                        <br />
+                        <strong>Latitude:</strong> {this.props.locData.lat}
+                    </Card.Text>
+                </Card.Body>
+            </Card>
+            </>
+        );
     };
 }
 
