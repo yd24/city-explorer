@@ -45,6 +45,7 @@ class Main extends React.Component {
                 />
                 <SearchResult 
                     locData={this.state.locData}
+                    error={this.state.error}
                 />
                 <ErrorMssg 
                     error={this.state.error}

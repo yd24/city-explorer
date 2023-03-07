@@ -4,7 +4,7 @@ class ErrorMssg extends React.Component {
     render() {
         return this.props.error > 0
             ?
-            <p>Error Message: {this.props.errorMssg}</p>
+            <p className="error-mssg">Error Message: {this.props.errorMssg}</p>
             :
             null;
     };

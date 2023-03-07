@@ -1,5 +1,7 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
 import axios from 'axios';
 
 class CitySearch extends React.Component {
@@ -25,15 +27,18 @@ class CitySearch extends React.Component {
 
     render() {
         return(
-            <Form aria-label="Search location" onSubmit={this.handleSubmit}>
-                <Form.Control
-                    type="text"
-                    placeholder="Search for location"
-                    onChange={this.handleInput}
-                >
-                </Form.Control>
-                <button type="submit">Explore!</button>
-            </Form>
+            <Col sm={6} className="mx-auto">
+                <Form aria-label="Search location" onSubmit={this.handleSubmit}>
+                    <Form.Control
+                        size="lg"
+                        type="text"
+                        placeholder="Search for location"
+                        onChange={this.handleInput}
+                    >
+                    </Form.Control>
+                    <Button className="mt-4 mb-5 px-5 py-2" variant="outline-light" type="submit">Explore!</Button>
+                </Form>
+            </Col>
         );
     }
 }

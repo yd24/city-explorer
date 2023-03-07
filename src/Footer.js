@@ -2,7 +2,7 @@ import React from 'react';
 
 class Footer extends React.Component {
     render() {
-        return <p>City Explorer by Daniel Yoon</p>;
+        return <p className="footer">City Explorer by Daniel Yoon</p>;
     }
 }
 
