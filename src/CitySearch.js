@@ -20,8 +20,21 @@ class CitySearch extends React.Component {
                 }
             });
             this.props.setLocData(cityData.data[0]);
+            this.props.resetError();
         } catch(error) {
             this.props.setError(error);
+        }
+
+        try {
+            let weatherData = await axios.get(`${process.env.REACT_APP_SERVER}/weather`, {
+                params: {
+                    searchQuery: this.props.searchValue
+                }
+            });
+            this.props.setWeatherData(weatherData.data);
+            this.props.resetWeatherError();
+        } catch(error) {
+            this.props.setWeatherError(error);
         }
     };
 

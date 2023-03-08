@@ -25,14 +25,16 @@ body {
   max-width: 500px;
 }
 
-.card-width {
-  max-width: 500px;
-  margin: 0 auto;
+.forecast-header {
+  color: white;
+  margin-bottom: 1rem;
+  font-size: 32px;
 }
 
 .footer {
   color: white;
-  margin-top: 5rem;
+  margin-top: 3rem;
+  padding-bottom: 2rem;
 }
 
 .error-mssg {
