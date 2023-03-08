@@ -23,6 +23,17 @@ class CitySearch extends React.Component {
         } catch(error) {
             this.props.setError(error);
         }
+
+        try {
+            let weatherData = await axios.get(`${process.env.REACT_APP_SERVER}/weather`, {
+                params: {
+                    searchQuery: this.props.searchValue
+                }
+            });
+            this.props.setWeatherData(weatherData.data);
+        } catch(error) {
+            this.props.setWeatherError(error);
+        }
     };
 
     render() {

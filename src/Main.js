@@ -2,6 +2,7 @@ import React from 'react';
 import CitySearch from './CitySearch';
 import SearchResult from './SearchResult';
 import ErrorMssg from './ErrorMssg';
+import WeatherResult from './WeatherResult';
 
 class Main extends React.Component {
     constructor(props) {
@@ -9,8 +10,11 @@ class Main extends React.Component {
         this.state = {
             searchValue: '',
             locData: {},
+            weatherData: [],
             error: false,
-            errorMssg:''
+            weatherError: false,
+            errorMssg:'',
+            weatherErrorMssg: ''
         };
     }
 
@@ -27,6 +31,12 @@ class Main extends React.Component {
         });
     };
 
+    setWeatherData = (data) => {
+        this.setState({
+            weatherData: data
+        });
+    };
+
     setError = (error) => {
         this.setState({
             error: true,
@@ -34,19 +44,38 @@ class Main extends React.Component {
         });
     };
 
+    setWeatherError = (error) => {
+        this.setState({
+            weatherError: true,
+            weatherErrorMssg: error.message
+        });
+    };
+
     render() {
+        const forecasts = !this.state.weatherError 
+        && 
+        this.state.weatherData.map((day, idx) => {
+            return <WeatherResult 
+                key={idx}
+                date={day.date}
+                descr={day.description}
+            />;
+        });
         return(
             <>
                 <CitySearch 
                     setLocData={this.setLocData}
                     setSearchValue={this.setSearchValue}
                     searchValue={this.state.searchValue}
+                    setWeatherData={this.setWeatherData}
                     setError={this.setError}
+                    setWeatherError={this.setWeatherError}
                 />
                 <SearchResult 
                     locData={this.state.locData}
                     error={this.state.error}
                 />
+                {forecasts}
                 <ErrorMssg 
                     error={this.state.error}
                     errorMssg={this.state.errorMssg}
