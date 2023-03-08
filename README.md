@@ -2,7 +2,7 @@
 
 **Author**: Daniel Yoon
 
-**Version**: 1.4.0
+**Version**: 1.5.0
 
 ## Overview
 This application allows users to explore areas they haven't been to before. Input a location and see a map and coordinates for the area!
@@ -23,6 +23,8 @@ This application uses React to render the webpage, React-Bootstrap for styling U
 * 03-06-2023 9:00pm - Application now displays a static map for the searched location.
 * 03-06-2023 10:00pm - Application now displays errors for invalid requests.
 * 03-07-2023 11:00pm - Updated visual layout for application.
+* 03-07-2023 4:30pm - Application now displays forecast data for the location, if available.
+* 03-07-2023 9:31pm - Application now display alerts for errors from server requests.
 
 ## Credit and Collaborations
 Developed by: Daniel Yoon
@@ -63,3 +65,13 @@ https://docs.google.com/drawings/d/1Tkxp3Tv0wyyU8MDvq5erv-_a8AJENkYlkxesk4n3XBg/
 * Finish time: 10:00pm
 
 * Actual time needed to complete: 1 hour
+
+## Feature #4 Forecast Data
+
+* Estimate of time needed to complete: 1 hour
+
+* Start time: 2:30pm
+
+* Finish time: 4:30pm
+
+* Actual time needed to complete: 2 hours
