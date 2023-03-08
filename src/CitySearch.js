@@ -20,6 +20,7 @@ class CitySearch extends React.Component {
                 }
             });
             this.props.setLocData(cityData.data[0]);
+            this.props.resetError();
         } catch(error) {
             this.props.setError(error);
         }
@@ -31,6 +32,7 @@ class CitySearch extends React.Component {
                 }
             });
             this.props.setWeatherData(weatherData.data);
+            this.props.resetWeatherError();
         } catch(error) {
             this.props.setWeatherError(error);
         }

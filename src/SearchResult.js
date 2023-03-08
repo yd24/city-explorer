@@ -14,7 +14,7 @@ class SearchResult extends React.Component {
             Object.keys(this.props.locData).length > 0 && !this.props.error 
             &&
             <>
-            <Card className="text-center card-width">
+            <Card className="text-center mx-auto" style={{ maxWidth: "500px"}}>
                 <Card.Header><h4>{this.props.locData.display_name}</h4></Card.Header>
                 <Card.Img
                     variant="top"
