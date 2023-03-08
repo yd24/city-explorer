@@ -1,13 +1,18 @@
 import React from 'react';
+import Card from 'react-bootstrap/Card';
 
 class WeatherResult extends React.Component {
     render() {
-        console.log(this.props.date);
+        const daysOfWeek = ['Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday','Friday','Saturday'];
+        const date = new Date(this.props.date);
         return(
-            <>
-            <p>{this.props.date}</p>
-            <p>{this.props.description}</p>
-            </>
+            <Card className="mx-3" style={{ width: "200px", textAlign: "left" }}>
+                <Card.Body>
+                    <Card.Title style={{ fontWeight: "bold" }}>{daysOfWeek[date.getDay()]}</Card.Title>
+                    <Card.Subtitle style={{ fontSize: "12px", marginBottom: "1rem" }}>{this.props.date}</Card.Subtitle>
+                    <Card.Text>{this.props.descr}</Card.Text>
+                </Card.Body>
+            </Card>
         );
     }
 }

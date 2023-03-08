@@ -3,6 +3,7 @@ import CitySearch from './CitySearch';
 import SearchResult from './SearchResult';
 import ErrorMssg from './ErrorMssg';
 import WeatherResult from './WeatherResult';
+import Row from 'react-bootstrap/Row';
 
 class Main extends React.Component {
     constructor(props) {
@@ -75,7 +76,12 @@ class Main extends React.Component {
                     locData={this.state.locData}
                     error={this.state.error}
                 />
-                {forecasts}
+                {this.state.weatherData.length > 0 &&
+                    <Row className="justify-content-center mt-5">
+                        <h3 className="forecast-header">Forecast Data</h3>
+                        {forecasts}
+                    </Row>
+                }
                 <ErrorMssg 
                     error={this.state.error}
                     errorMssg={this.state.errorMssg}

@@ -30,6 +30,12 @@ body {
   margin: 0 auto;
 }
 
+.forecast-header {
+  color: white;
+  margin-bottom: 1rem;
+  font-size: 32px;
+}
+
 .footer {
   color: white;
   margin-top: 5rem;
