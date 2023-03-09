@@ -13,17 +13,21 @@ class Main extends React.Component {
             searchValue: '',
             locData: {},
             weatherData: [],
+            movieData: [],
             error: false,
             weatherError: false,
+            movieError: false,
             errorMssg:'',
-            weatherErrorMssg: ''
+            weatherErrorMssg: '',
+            movieErrorMssg: ''
         };
     }
 
     setLocData = (data) => {
         this.setState({
             locData: data,
-            error: false
+            error: false,
+            errorMssg: ''
         });
     };
 
@@ -35,9 +39,19 @@ class Main extends React.Component {
 
     setWeatherData = (data) => {
         this.setState({
-            weatherData: data
+            weatherData: data,
+            weatherError: false,
+            weatherErrorMssg: ''
         });
     };
+
+    setMovieData = (data) => {
+        this.setState({
+            movieData: data,
+            movieError: false,
+            movieErrorMssg: ''
+        });
+    }
 
     setError = (error) => {
         this.setState({
@@ -46,24 +60,10 @@ class Main extends React.Component {
         });
     };
 
-    resetError = () => {
-        this.setState({
-            error: false,
-            errorMssg:''
-        });
-    };
-
     setWeatherError = (error) => {
         this.setState({
             weatherError: true,
             weatherErrorMssg: error.message
-        });
-    };
-
-    resetWeatherError = () => {
-        this.setState({
-            weatherError: false,
-            weatherErrorMssg:''
         });
     };
 
@@ -83,11 +83,11 @@ class Main extends React.Component {
                     setLocData={this.setLocData}
                     setSearchValue={this.setSearchValue}
                     searchValue={this.state.searchValue}
+                    locData={this.state.locData}
                     setWeatherData={this.setWeatherData}
+                    setMovieData={this.setMovieData}
                     setError={this.setError}
                     setWeatherError={this.setWeatherError}
-                    resetError={this.resetError}
-                    resetWeatherError={this.resetWeatherError}
                 />
                 <SearchResult 
                     locData={this.state.locData}
