@@ -21,7 +21,7 @@ class CitySearch extends React.Component {
         }).catch((error) => {
             this.props.setError(error);
         });
-        tempLocData = cityData.data[0];
+        tempLocData = cityData ? cityData.data[0] : { lon: undefined, lat: undefined };
         let weatherData = await axios.get(`${process.env.REACT_APP_SERVER}/weather`, {
             params: {
                 longitude: tempLocData.lon,
@@ -34,10 +34,15 @@ class CitySearch extends React.Component {
             params: {
                 searchQuery: this.props.searchValue
             }
+        }).catch((error) => {
+            this.props.setMovieError(error);
         });
-        this.props.setLocData(cityData.data[0]);
-        this.props.setWeatherData(weatherData.data);
-        this.props.setMovieData(movieData.data);
+        const weather = weatherData ? weatherData.data : [];
+        const city = cityData ? cityData.data[0] : {};
+        const movie = movieData ? movieData.data : [];
+        this.props.setLocData(city);
+        this.props.setWeatherData(weather);
+        this.props.setMovieData(movie);
     };
 
     render() {

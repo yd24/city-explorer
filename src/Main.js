@@ -2,9 +2,10 @@ import React from 'react';
 import CitySearch from './CitySearch';
 import SearchResult from './SearchResult';
 import ErrorMssg from './ErrorMssg';
-import WeatherResult from './WeatherResult';
+import Weather from './Weather';
 import Row from 'react-bootstrap/Row';
 import Alert from 'react-bootstrap/Alert';
+import Movies from './Movies'
 
 class Main extends React.Component {
     constructor(props) {
@@ -54,10 +55,12 @@ class Main extends React.Component {
     }
 
     setError = (error) => {
-        this.setState({
-            error: true,
-            errorMssg: error.message
-        });
+        if (error.response.status !== 400) {
+            this.setState({
+                error: true,
+                errorMssg: error.message
+            });
+        }
     };
 
     setWeatherError = (error) => {
@@ -67,16 +70,30 @@ class Main extends React.Component {
         });
     };
 
+    setMovieError = (error) => {
+        this.setState({
+            movieError: true,
+            movieErrorMssg: error.message
+        });
+    }
+
     render() {
         const forecasts = !this.state.weatherError 
         && 
         this.state.weatherData.map((day, idx) => {
-            return <WeatherResult 
+            return <Weather 
                 key={idx}
                 date={day.date}
                 descr={day.description}
             />;
         });
+
+        const movies = !this.state.movieError
+        &&
+        <Movies 
+            movieData={this.state.movieData}
+        />;
+
         return(
             <>
                 <CitySearch 
@@ -88,6 +105,7 @@ class Main extends React.Component {
                     setMovieData={this.setMovieData}
                     setError={this.setError}
                     setWeatherError={this.setWeatherError}
+                    setMovieError={this.setMovieError}
                 />
                 <SearchResult 
                     locData={this.state.locData}
@@ -95,11 +113,13 @@ class Main extends React.Component {
                 />
                 { Object.keys(this.state.locData).length > 0 && !this.state.error
                     &&
-                    ( !this.state.weatherError
+                    ( !this.state.weatherError && this.state.weatherData.length > 0
                     ?
                         <Row className="justify-content-center mt-5">
                             <h3 className="forecast-header">Forecast Data</h3>
-                            {forecasts}
+                            <Row className="justify-content-center gap-4">
+                                {forecasts}
+                            </Row>
                         </Row>
                     :
                         <Row className="justify-content-center mt-5">
@@ -107,9 +127,31 @@ class Main extends React.Component {
                                 <Alert.Heading className="mb-3"><h3>Oh no!</h3></Alert.Heading>
                                 <p>
                                     It looks like there's no forecast data for your location yet!
-                                    Try again later or check out another location instead.
+                                    Try again at a later time.
                                 </p>
                                 <p style={{ fontSize: "10px" }}>{this.state.weatherErrorMssg}</p>
+                            </Alert>
+                        </Row>
+                    )
+                }
+                { Object.keys(this.state.locData).length > 0 && !this.state.error
+                    &&
+                    ( !this.state.movieError && this.state.movieData.length > 0
+                    ?
+                        <Row className="justify-content-center mt-5">
+                            <h3 className="forecast-header">Movie Data</h3>
+                            <Row className="justify-content-center gap-3">
+                                {movies}
+                            </Row>
+                        </Row>
+                    :
+                        <Row className="justify-content-center mt-5">
+                            <Alert variant="warning" style={{maxWidth: "500px", textAlign: "left"}}>
+                                <Alert.Heading className="mb-3"><h3>Oh no!</h3></Alert.Heading>
+                                <p>
+                                    It looks like there were no movies related to your location!
+                                </p>
+                                <p style={{ fontSize: "10px" }}>{this.state.movieErrorMssg}</p>
                             </Alert>
                         </Row>
                     )
