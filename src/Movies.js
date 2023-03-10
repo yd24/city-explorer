@@ -14,7 +14,14 @@ class Movies extends React.Component {
                 <Card key={idx} style={{maxWidth: "300px", textAlign: "left"}}>
                     <Card.Body>
                         <Card.Title className="mb-4">{movie.title}</Card.Title>
+                        {movie.image_url !== ''
+                        ?
                         <Card.Img style={{maxWidth: "200px"}}variant="top" src={"https://image.tmdb.org/t/p/w200/" + movie.image_url}></Card.Img>
+                        :
+                        <Card.Text style={{maxWidth: "150px", backgroundColor: "black", height: "200px", color:"white", alignItems:"center", display: "flex", justifyContent:"center"}}>
+                            No Image Found
+                        </Card.Text>
+                        }
                         <Card.Subtitle className="mt-4 mb-2">Overview</Card.Subtitle>
                         <Card.Text style={{fontSize: "14px"}}>{movie.overview}</Card.Text>
                         <Card.Subtitle className="mt-4 mb-2">Rating</Card.Subtitle>
