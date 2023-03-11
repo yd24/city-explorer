@@ -4,7 +4,7 @@
 
 **Author**: Daniel Yoon
 
-**Version**: 1.6.0
+**Version**: 1.7.0
 
 ## Overview
 This application allows users to explore areas they haven't been to before. Input a location and see a map and coordinates for the area!
@@ -28,6 +28,7 @@ This application uses React to render the webpage, React-Bootstrap for styling U
 * 03-07-2023 4:30pm - Application now displays forecast data for the location, if available.
 * 03-07-2023 9:31pm - Application now display alerts for errors from server requests.
 * 03-09-2023 11:30pm - Application now displays movie data related to the location, if available.
+* 03-10-2023 10:00pm - Refactor movie component and handle errors better
 
 ## Credit and Collaborations
 Developed by: Daniel Yoon
