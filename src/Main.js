@@ -16,6 +16,7 @@ class Main extends React.Component {
             weatherData: [],
             movieData: [],
             error: false,
+            errorStatus: [200, 200, 200],
             weatherError: false,
             movieError: false,
             errorMssg:'',
@@ -25,11 +26,16 @@ class Main extends React.Component {
     }
 
     setLocData = (data) => {
-        this.setState({
-            locData: data,
-            error: false,
-            errorMssg: ''
-        });
+        let status = [...this.state.errorStatus];
+        status[0] = 200;
+        if (Object.keys(data).length > 0) {
+            this.setState({
+                locData: data,
+                error: false,
+                errorMssg: '',
+                errorStatus: status
+            });
+        }
     };
 
     setSearchValue = (query) => {
@@ -39,6 +45,8 @@ class Main extends React.Component {
     };
 
     setWeatherData = (data) => {
+        let status = [...this.state.errorStatus];
+        status[1] = 200;
         this.setState({
             weatherData: data,
             weatherError: false,
@@ -47,6 +55,8 @@ class Main extends React.Component {
     };
 
     setMovieData = (data) => {
+        let status = [...this.state.errorStatus];
+        status[2] = 200;
         this.setState({
             movieData: data,
             movieError: false,
@@ -55,31 +65,37 @@ class Main extends React.Component {
     }
 
     setError = (error) => {
-        if (error.response.status !== 400) {
-            this.setState({
-                error: true,
-                errorMssg: error.message
-            });
-        }
+        let status = [...this.state.errorStatus];
+        status[0] = error.response.status;
+        this.setState({
+            error: true,
+            errorMssg: error.message,
+            errorStatus: status
+        });
     };
 
     setWeatherError = (error) => {
+        let status = this.state.errorStatus;
+        status[1] = error.response.status;
         this.setState({
             weatherError: true,
-            weatherErrorMssg: error.message
+            weatherErrorMssg: error.message,
+            errorStatus: status
         });
     };
 
     setMovieError = (error) => {
+        let status = this.state.errorStatus;
+        status[2] = error.response.status;
         this.setState({
             movieError: true,
-            movieErrorMssg: error.message
+            movieErrorMssg: error.message,
+            errorStatus: status
         });
     }
 
     render() {
-        const forecasts = !this.state.weatherError 
-        && 
+        const forecasts = 
         this.state.weatherData.map((day, idx) => {
             return <Weather 
                 key={idx}
@@ -88,12 +104,11 @@ class Main extends React.Component {
             />;
         });
 
-        const movies = !this.state.movieError
-        &&
+        const movies = 
         <Movies 
             movieData={this.state.movieData}
         />;
-
+        
         return(
             <>
                 <CitySearch 
@@ -110,10 +125,11 @@ class Main extends React.Component {
                 <SearchResult 
                     locData={this.state.locData}
                     error={this.state.error}
+                    errorStatus={this.state.errorStatus}
                 />
-                { Object.keys(this.state.locData).length > 0 && !this.state.error
+                { Object.keys(this.state.locData).length > 0 && !this.state.weatherError 
                     &&
-                    ( !this.state.weatherError && this.state.weatherData.length > 0
+                    ( this.state.weatherData.length > 0
                     ?
                         <Row className="justify-content-center mt-5">
                             <h3 className="forecast-header">Forecast Data</h3>
@@ -134,9 +150,9 @@ class Main extends React.Component {
                         </Row>
                     )
                 }
-                { Object.keys(this.state.locData).length > 0 && !this.state.error
+                { Object.keys(this.state.locData).length > 0 && this.state.movieData.length > 0
                     &&
-                    ( !this.state.movieError && this.state.movieData.length > 0
+                    ( this.state.movieData.length > 0
                     ?
                         <Row className="justify-content-center mt-5">
                             <h3 className="forecast-header">Movie Data</h3>
@@ -159,6 +175,7 @@ class Main extends React.Component {
                 <ErrorMssg 
                     error={this.state.error}
                     errorMssg={this.state.errorMssg}
+                    errorStatus={this.state.errorStatus}
                 />
             </>
         );
