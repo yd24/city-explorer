@@ -12,37 +12,45 @@ class CitySearch extends React.Component {
     handleSubmit = async (e) => {
         e.preventDefault();
         let tempLocData = {};
-        let cityData = await axios.get('https://us1.locationiq.com/v1/search', {
-            params: {
-                key: process.env.REACT_APP_LOCATIONIQ_API_KEY,
-                q: this.props.searchValue,
-                format: 'json'
-            }
-        }).catch((error) => {
+        try {
+            let cityData = await axios.get('https://us1.locationiq.com/v1/search', {
+                params: {
+                    key: process.env.REACT_APP_LOCATIONIQ_API_KEY,
+                    q: this.props.searchValue,
+                    format: 'json'
+                }
+            });
+            tempLocData = cityData ? cityData.data[0] : { lon: undefined, lat: undefined };
+            const city = cityData ? cityData.data[0] : {};
+            this.props.setLocData(city);
+        } catch (error) {
             this.props.setError(error);
-        });
-        tempLocData = cityData ? cityData.data[0] : { lon: undefined, lat: undefined };
-        let weatherData = await axios.get(`${process.env.REACT_APP_SERVER}/weather`, {
-            params: {
-                longitude: tempLocData.lon,
-                latitude: tempLocData.lat
-            }
-        }).catch((error) => {
+        }
+
+        try {
+            let weatherData = await axios.get(`${process.env.REACT_APP_SERVER}/weather`, {
+                params: {
+                    longitude: tempLocData.lon,
+                    latitude: tempLocData.lat
+                }
+            });
+            const weather = weatherData ? weatherData.data : [];
+            this.props.setWeatherData(weather);
+        } catch (error) {
             this.props.setWeatherError(error);
-        });
-        let movieData = await axios.get(`${process.env.REACT_APP_SERVER}/movies`, {
-            params: {
-                searchQuery: this.props.searchValue
-            }
-        }).catch((error) => {
+        }
+
+        try {
+            let movieData = await axios.get(`${process.env.REACT_APP_SERVER}/movies`, {
+                params: {
+                    searchQuery: this.props.searchValue
+                }
+            });
+            const movie = movieData ? movieData.data : [];
+            this.props.setMovieData(movie);
+        } catch (error) {
             this.props.setMovieError(error);
-        });
-        const weather = weatherData ? weatherData.data : [];
-        const city = cityData ? cityData.data[0] : {};
-        const movie = movieData ? movieData.data : [];
-        this.props.setLocData(city);
-        this.props.setWeatherData(weather);
-        this.props.setMovieData(movie);
+        }
     };
 
     render() {

@@ -11,7 +11,7 @@ class SearchResult extends React.Component {
 
     render() {
         return (
-            Object.keys(this.props.locData).length > 0 && !this.props.error 
+            Object.keys(this.props.locData).length > 0 && this.props.errorStatus[0] === 200
             &&
             <>
             <Card className="text-center mx-auto" style={{ maxWidth: "500px"}}>
