@@ -104,8 +104,6 @@ class Main extends React.Component {
             />;
         });
 
-        console.log(this.state.movieData);
-
         const movies = 
         <Movies 
             movieData={this.state.movieData}
