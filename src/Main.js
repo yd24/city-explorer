@@ -58,7 +58,7 @@ class Main extends React.Component {
         let status = [...this.state.errorStatus];
         status[2] = 200;
         this.setState({
-            movieData: data,
+            movieData: data.data,
             movieError: false,
             movieErrorMssg: ''
         });
@@ -99,10 +99,12 @@ class Main extends React.Component {
         this.state.weatherData.map((day, idx) => {
             return <Weather 
                 key={idx}
-                date={day.date}
-                descr={day.description}
+                date={day.time}
+                descr={day.forecast}
             />;
         });
+
+        console.log(this.state.movieData);
 
         const movies = 
         <Movies 
